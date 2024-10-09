@@ -12,7 +12,8 @@ createInertiaApp({
     },
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
-            .use(plugin, {
+            .use(plugin)
+            .use(PrimeVue, {
                 theme: {
                     preset: Aura,
                     options: {
@@ -25,7 +26,6 @@ createInertiaApp({
                 },
                 ripple: true
             })
-            .use(PrimeVue)
             .mount(el)
     },
 });
