@@ -2,6 +2,8 @@ import './bootstrap';
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
 import type { DefineComponent } from 'vue';
+import PrimeVue from 'primevue/config';
+import Aura from '@primevue/themes/aura';
 
 createInertiaApp({
     resolve: name => {
@@ -10,7 +12,20 @@ createInertiaApp({
     },
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
-            .use(plugin)
+            .use(plugin, {
+                theme: {
+                    preset: Aura,
+                    options: {
+                        darkModeSelector: '.app-dark',
+                        cssLayer: {
+                            name: 'primevue',
+                            order: 'tailwind-base, primevue, tailwind-utilities'
+                        }
+                    }
+                },
+                ripple: true
+            })
+            .use(PrimeVue)
             .mount(el)
     },
 });
