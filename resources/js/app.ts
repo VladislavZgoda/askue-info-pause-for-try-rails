@@ -4,11 +4,14 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import type { DefineComponent } from 'vue';
 import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
+import Layout from './Layout.vue';
 
 createInertiaApp({
     resolve: name => {
-        const pages = import.meta.glob<DefineComponent>('./Pages/**/*.vue', { eager: true })
-        return pages[`./Pages/${name}.vue`]
+        const pages = import.meta.glob<DefineComponent>('./Pages/**/*.vue', { eager: true });
+        let page = pages[`./Pages/${name}.vue`];
+        page.default.layout = Layout;
+        return pages[`./Pages/${name}.vue`];
     },
     setup({ el, App, props, plugin }) {
         createApp({ render: () => h(App, props) })
