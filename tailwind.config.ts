@@ -8,6 +8,6 @@ export default {
   theme: {
     extend: {},
   },
-    plugins: [require('tailwindcss-primeui')],
+    plugins: [],
 }
 
